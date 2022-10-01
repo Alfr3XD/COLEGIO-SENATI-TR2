@@ -97,8 +97,7 @@ namespace COLEGIO.IU
                 CELULAR = CELULAR_TEXT.Text,
                 DIRECCION = DIRECCION_TEXT.Text,
                 CORREO = CORREO_TEXT.Text,
-                NACIMIENTO = FECHA.Value.ToString("dd-MM-yyyy"),
-                OBSERVACIONES = Convert.ToInt32(NUMERIC.Value)
+                NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd")
             };
 
             alum.AddAlumno(NewAlumno);
@@ -165,8 +164,7 @@ namespace COLEGIO.IU
                         CELULAR = CELULAR_TEXT.Text,
                         DIRECCION = DIRECCION_TEXT.Text,
                         CORREO = CORREO_TEXT.Text,
-                        NACIMIENTO = FECHA.Value.ToString("dd-MM-yyyy"),
-                        OBSERVACIONES = Convert.ToInt32(NUMERIC.Value)
+                        NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd")
                     };
 
                     alum.UpdateAlumno(NewAlumno);

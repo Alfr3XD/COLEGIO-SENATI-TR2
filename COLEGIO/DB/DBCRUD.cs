@@ -38,8 +38,7 @@ namespace COLEGIO.DB
                     CELULAR = ReadFiles[6].ToString(),
                     DIRECCION = ReadFiles[7].ToString(),
                     CORREO = ReadFiles[8].ToString(),
-                    NACIMIENTO = ReadFiles.GetDateTime(9).ToString(),
-                    OBSERVACIONES  = ReadFiles.GetInt32(10)
+                    NACIMIENTO = ReadFiles.GetDateTime(9).ToString()
                 });
             }
             ReadFiles.Close();
@@ -51,7 +50,7 @@ namespace COLEGIO.DB
         {
             Connection.Open();
             SqlCommand CommandSet = new SqlCommand(
-                "INSERT INTO ALUMNO values (@id, @dni, @name, @p_ap, @m_ap, @te, @ce, @ad, @em, @na, @ob)",
+                "INSERT INTO ALUMNO values (@id, @dni, @name, @p_ap, @m_ap, @te, @ce, @ad, @em, @na)",
                 Connection);
             CommandSet.Parameters.AddWithValue("@id", DATA.ID);
             CommandSet.Parameters.AddWithValue("@dni", DATA.DNI);
@@ -63,7 +62,6 @@ namespace COLEGIO.DB
             CommandSet.Parameters.AddWithValue("@ad", ((object)DATA.DIRECCION ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@em", ((object)DATA.CORREO ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@na", DATA.NACIMIENTO);
-            CommandSet.Parameters.AddWithValue("@ob", ((object)DATA.OBSERVACIONES ?? DBNull.Value));
 
             DataTable DT = new DataTable();
             SqlDataAdapter DA = new SqlDataAdapter(CommandSet);
@@ -87,7 +85,6 @@ namespace COLEGIO.DB
             CommandSet.Parameters.AddWithValue("@ad", ((object)DATA.DIRECCION ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@em", ((object)DATA.CORREO ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@na", DATA.NACIMIENTO);
-            CommandSet.Parameters.AddWithValue("@ob", ((object)DATA.OBSERVACIONES ?? DBNull.Value));
 
             DataTable DT = new DataTable();
             SqlDataAdapter DA = new SqlDataAdapter(CommandSet);

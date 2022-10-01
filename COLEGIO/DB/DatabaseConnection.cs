@@ -12,7 +12,7 @@ namespace COLEGIO.DB
     {
         protected SqlConnection Connection =
             new SqlConnection(
-            "Server=07-LAB112PC05;DataBase=Colegio;Integrated Security=true"
+            "Server=ALFR3XD-PC;DataBase=Colegio;Integrated Security=true"
             );
 
         public SqlConnection GetConnection()
