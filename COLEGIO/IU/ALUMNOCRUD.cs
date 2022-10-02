@@ -72,7 +72,13 @@ namespace COLEGIO.IU
                 return;
             }
 
-            foreach(ALUMNO Alumno in Alumnos)
+            if (Convert.ToInt32(N_NOTA.Value) < 1)
+            {
+                MessageBox.Show("No has ingresado la nota del estudiante.");
+                return;
+            }
+
+            foreach (ALUMNO Alumno in Alumnos)
             {
                 if(Alumno.ID == Convert.ToInt32(NUMERIC.Value))
                 {
@@ -97,7 +103,8 @@ namespace COLEGIO.IU
                 CELULAR = CELULAR_TEXT.Text,
                 DIRECCION = DIRECCION_TEXT.Text,
                 CORREO = CORREO_TEXT.Text,
-                NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd")
+                NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd"),
+                NOTA = Convert.ToInt32(N_NOTA.Value)
             };
 
             alum.AddAlumno(NewAlumno);
@@ -141,6 +148,12 @@ namespace COLEGIO.IU
                 return;
             }
 
+            if (Convert.ToInt32(N_NOTA.Value) < 1)
+            {
+                MessageBox.Show("No has ingresado la nota del estudiante.");
+                return;
+            }
+
             DBCRUD alum = new DBCRUD();
 
             List<ALUMNO> Alumnos = alum.GetLog("");
@@ -164,7 +177,8 @@ namespace COLEGIO.IU
                         CELULAR = CELULAR_TEXT.Text,
                         DIRECCION = DIRECCION_TEXT.Text,
                         CORREO = CORREO_TEXT.Text,
-                        NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd")
+                        NACIMIENTO = FECHA.Value.ToString("yyyy-MM-dd"),
+                        NOTA = Convert.ToInt32(N_NOTA.Value)
                     };
 
                     alum.UpdateAlumno(NewAlumno);
@@ -242,6 +256,7 @@ namespace COLEGIO.IU
                     DIRECCION_TEXT.Text = Alumno.DIRECCION;
                     CORREO_TEXT.Text = Alumno.CORREO;
                     FECHA.Value = oDate;
+                    N_NOTA.Value = Alumno.NOTA;
                     return;
                 }
             }

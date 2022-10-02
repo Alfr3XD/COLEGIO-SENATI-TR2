@@ -18,5 +18,6 @@ namespace COLEGIO.DATA
         public string DIRECCION { set; get; }
         public string CORREO { set; get; }
         public string NACIMIENTO { set; get; }
+        public int NOTA { set; get; }
     }
 }

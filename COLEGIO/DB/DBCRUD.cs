@@ -38,7 +38,8 @@ namespace COLEGIO.DB
                     CELULAR = ReadFiles[6].ToString(),
                     DIRECCION = ReadFiles[7].ToString(),
                     CORREO = ReadFiles[8].ToString(),
-                    NACIMIENTO = ReadFiles.GetDateTime(9).ToString()
+                    NACIMIENTO = ReadFiles.GetDateTime(9).ToString(),
+                    NOTA = ReadFiles.GetInt32(10)
                 });
             }
             ReadFiles.Close();
@@ -50,7 +51,7 @@ namespace COLEGIO.DB
         {
             Connection.Open();
             SqlCommand CommandSet = new SqlCommand(
-                "INSERT INTO ALUMNO values (@id, @dni, @name, @p_ap, @m_ap, @te, @ce, @ad, @em, @na)",
+                "INSERT INTO ALUMNO values (@id, @dni, @name, @p_ap, @m_ap, @te, @ce, @ad, @em, @na); INSERT INTO NOTAS VALUES (@id, @nota);",
                 Connection);
             CommandSet.Parameters.AddWithValue("@id", DATA.ID);
             CommandSet.Parameters.AddWithValue("@dni", DATA.DNI);
@@ -62,6 +63,7 @@ namespace COLEGIO.DB
             CommandSet.Parameters.AddWithValue("@ad", ((object)DATA.DIRECCION ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@em", ((object)DATA.CORREO ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@na", DATA.NACIMIENTO);
+            CommandSet.Parameters.AddWithValue("@nota", DATA.NOTA);
 
             DataTable DT = new DataTable();
             SqlDataAdapter DA = new SqlDataAdapter(CommandSet);
@@ -73,7 +75,7 @@ namespace COLEGIO.DB
         {
             Connection.Open();
             SqlCommand CommandSet = new SqlCommand(
-                "UPDATE ALUMNO SET [name] = @name, p_apellido = @p_ap, m_apellido = @m_ap, telefono = @te, celular = @ce, [address] = @ad, email = @em, nacimiento = @na WHERE id = @id or dni = @dni"
+                "UPDATE ALUMNO SET [name] = @name, p_apellido = @p_ap, m_apellido = @m_ap, telefono = @te, celular = @ce, [address] = @ad, email = @em, nacimiento = @na WHERE id = @id or dni = @dni; UPDATE NOTAS SET alumno_id = @id, nota = @nota"
                 ,Connection);
             CommandSet.Parameters.AddWithValue("@id", DATA.ID);
             CommandSet.Parameters.AddWithValue("@dni", DATA.DNI);
@@ -85,6 +87,7 @@ namespace COLEGIO.DB
             CommandSet.Parameters.AddWithValue("@ad", ((object)DATA.DIRECCION ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@em", ((object)DATA.CORREO ?? DBNull.Value));
             CommandSet.Parameters.AddWithValue("@na", DATA.NACIMIENTO);
+            CommandSet.Parameters.AddWithValue("@nota", DATA.NOTA);
 
             DataTable DT = new DataTable();
             SqlDataAdapter DA = new SqlDataAdapter(CommandSet);
@@ -96,7 +99,7 @@ namespace COLEGIO.DB
         {
             Connection.Open();
             SqlCommand CommandSet = new SqlCommand(
-                "DELETE ALUMNO WHERE id = @id or dni = @dni"
+                "DELETE ALUMNO WHERE id = @id or dni = @dni; DELETE NOTAS WHERE alumno_id = @id"
                 , Connection);
             CommandSet.Parameters.AddWithValue("@id", ID);
             CommandSet.Parameters.AddWithValue("@dni", DNI);

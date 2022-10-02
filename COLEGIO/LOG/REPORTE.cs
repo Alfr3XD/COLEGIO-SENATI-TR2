@@ -16,14 +16,14 @@ namespace COLEGIO.LOG {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class REPORTE : ReportClass {
         
-        public CrystalReport1() {
+        public REPORTE() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "REPORTE.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace COLEGIO.LOG {
         
         public override string FullResourceName {
             get {
-                return "COLEGIO.LOG.CrystalReport1.rpt";
+                return "COLEGIO.LOG.REPORTE.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace COLEGIO.LOG {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedREPORTE : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedREPORTE() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace COLEGIO.LOG {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            REPORTE rpt = new REPORTE();
             rpt.Site = this.Site;
             return rpt;
         }
